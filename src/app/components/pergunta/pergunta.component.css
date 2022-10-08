@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+* {
+    box-sizing: border-box;
+    width: 480px;
+}
+
+#pergunta {
+    font-family: 'Roboto', sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+#resposta{
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+
+input {
+    display:block;
+    width:100%;
+    margin:10px 0;
+    padding:10px;
+    font-size: 22px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.campo {
+    background-color: #fafafa;
+    border-radius:10px;
+    border: 1px solid #aaa;
+    height: 50px;
+    box-shadow:0 0 4px rgba(0,0,0,0.3);
+    transition: .3s box-shadow;
+    text-align: center;
+}
+
+
+.campo:hover {
+    box-shadow:0 0 4px rgba(0,0,0,0.5);
+}
+
+.botao{
+    border-radius:10px;
+    border: 1px solid #aaa;
+    background-color: rgb(100, 143, 244);
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    height: 50px;
+}
+
+.form-center form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+

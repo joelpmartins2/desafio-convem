@@ -1,0 +1,8 @@
+<div class="form-center">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <label id="pergunta">Você quer se juntar ao time da Convem?</label>
+      <input class="campo" type="text" [formControl]="form.controls['campo_resposta']"/>
+      <button class="botao" type="submit">Enviar</button>
+    </form>
+    <h2 id="resposta">{{ texto }}</h2>
+</div>
