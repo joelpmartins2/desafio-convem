@@ -1,7 +1,9 @@
 import { registerLocaleData } from '@angular/common';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { PerguntaService } from './pergunta.service';
+import { Observable } from 'rxjs/internal/Observable';
+import { API_PATH } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pergunta',
@@ -9,10 +11,9 @@ import { PerguntaService } from './pergunta.service';
   styleUrls: ['./pergunta.component.css']
 })
 export class PerguntaComponent implements OnInit {
-  resposta!: Array<any>;
+  resposta = "";
   texto = "";
-
-  constructor(private perguntaServive: PerguntaService) {}
+  constructor(private httpClient: HttpClient) {}
   
   var_resposta = new FormControl('');
   form = new FormGroup({
@@ -24,15 +25,14 @@ export class PerguntaComponent implements OnInit {
   }
 
   async onSubmit(){
-    try{
-      this.perguntaServive.obterResposta(this.var_resposta.value!).subscribe(dados => this.resposta = dados)
-      await this.delay(2000);
-      this.texto = this.resposta[0].texto;
-    }catch(err) {
-      this.texto = "Erro";
-    }
+    var formData: any = new FormData();
+    formData.append('resposta', this.var_resposta.value);
+    this.httpClient
+      .post(`${API_PATH}`, formData)
+      .subscribe({
+        next: (response:any) => this.resposta = response.resposta,
+        error: (error) => this.resposta = error.toString(),
+      });
   }
-  delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
 }
-}
+
